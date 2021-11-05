@@ -38,7 +38,7 @@ export const errorMessage = (error) => {
     return({type:ERROR, payload:error})
 }
 export const setError = (error) => {
-    return({type: 'SET_ERROR', payload: error})
+    return({type: SET_ERROR, payload: error})
 }
 
 
