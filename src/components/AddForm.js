@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import {addSmurfs, setError} from '../actions/index'
 
+const initialState = {
+    name:"",
+    position:"",
+    nickname:"",
+    description:""
+}
 
 const AddForm = (props) => {
 
-    const [state, setState] = useState({
-        name:"",
-        position:"",
-        nickname:"",
-        description:""
-    });
+    const [state, setState] = useState(initialState);
 
     //remove when error state is added
 
@@ -23,11 +24,13 @@ const AddForm = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        props.setError();
         if (state.name === "" || state.position === "" || state.nickname === "") {
-            return props.setError('error');
+            props.setError('error');
         }else{
             props.addSmurfs({...state, id:Date.now()})
         }
+        setState(initialState)
     }
 
 const {name, position, nickname, description} = state;
